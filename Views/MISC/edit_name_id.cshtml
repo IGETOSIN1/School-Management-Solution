@@ -1,0 +1,235 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_student
+
+@{
+    ViewBag.Title = "edit_name_id";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Student Module</h1>
+
+<h3 class="text-center"> Edit Student's Name/ ID </h3>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h5 style=" text-align: center;" class="error_message"> {{report}} </h5>
+        <hr class="error_line" />
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-lg-7" style="float: none; margin: 0 auto;">
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Stud. Name</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Full_Name, (IEnumerable<SelectListItem>)ViewBag.Full_Nam, "Select", new { @class = "form-control",@ng_model="student_name",@ng_change="display_id()" })
+                    @Html.ValidationMessageFor(model => model.Full_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">New Name</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @ng_model = "student_name_new" } })
+                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">New ID</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Other_Name, new { htmlAttributes = new { @class = "form-control", @ng_model = "student_id_new" } })
+                    @Html.ValidationMessageFor(model => model.Other_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Update Student Name" class="btn btn-primary" ng-click="update_student_name()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Update Student ID" class="btn btn-primary" ng-click="update_student_id()"/>
+                </div>
+            </div>
+            <!--###################################################################################################-->
+            <hr/>
+            <div class="form-group hidden">
+                <label class="control-label col-md-2">Active List</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Full_Name, (IEnumerable<SelectListItem>)ViewBag.Full_Nam_act, "Select", new { @class = "form-control", @ng_model = "student_activated", @ng_change = "display_id_act()" })
+                    @Html.ValidationMessageFor(model => model.Full_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group hidden">
+                <label class="control-label col-md-2">Non-Active</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Full_Name, (IEnumerable<SelectListItem>)ViewBag.Full_Nam_deact, "Select", new { @class = "form-control", @ng_model = "student_deactivated", @ng_change = "display_id_deact()" })
+                    @Html.ValidationMessageFor(model => model.Full_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Activate Record" class="btn btn-primary" ng-click="activate()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="De-activate Record" class="btn btn-primary" ng-click="deactivate()" />
+                </div>
+            </div>
+            <!--####################################################################################################-->
+
+            <!--###################################################################################################-->
+            <hr />
+            <div class="form-group">
+                <label class="control-label col-md-2">Student(s)</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Full_Name, (IEnumerable<SelectListItem>)ViewBag.Full_Nam_stat, "Select", new { @class = "form-control", @ng_model = "student_name_status", @ng_change = "display_id_stat()" })
+                    @Html.ValidationMessageFor(model => model.Full_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Status</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Full_Name, (IEnumerable<SelectListItem>)ViewBag.statu, "Select", new { @class = "form-control", @ng_model = "student_status" })
+                    @Html.ValidationMessageFor(model => model.Full_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Update Status" class="btn btn-primary" ng-click="set_scholarship_status()" />
+                </div>
+            </div>
+            <!--####################################################################################################-->
+
+            @Html.EditorFor(model => model.Other_Name, new { htmlAttributes = new { @class = "form-control", @ng_model = "student_id" } })
+
+
+        </div>
+        </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window) {
+       
+
+        $scope.update_student_name = function () {
+            if (!$scope.student_name || !$scope.student_name_new) {
+                alert("Select the Current Student Name and Enter the New Student Name ...");
+            }
+            else {
+                $scope.report = "Loading, Please Wait ...";// alert("okkkk");
+                $http.post("/MISC/update_student_name?student_name_old=" + $scope.student_name + "&&student_name=" + $scope.student_name_new).then(function (response) {
+                    alert(response.data);
+                    $scope.report = "";
+                    $window.location.reload();
+                });
+            }
+        }
+
+        $scope.update_student_id = function () {
+            if (!$scope.student_name || !$scope.student_id_new) {
+                alert("Select the Current Student Name and Enter the New Student ID ...");
+            }
+            else {
+                $scope.report = "Loading, Please Wait ...";
+                $http.post("/MISC/update_student_id?student_name=" + $scope.student_name + "&&student_id_new=" + $scope.student_id_new + "&&student_id_old=" + $scope.student_id).then(function (response) {
+                    alert(response.data);
+                    $scope.report = "";
+                    $window.location.reload();
+                });
+            }
+        }
+
+            $scope.display_id = function () {
+                $scope.report = "Loading, Please Wait ...";
+                $scope.student_id = "";
+                $http.get("/MISC/find_id?student_name=" + $scope.student_name).then(function (response) {
+                    $scope.student_id = response.data;//alert(response.data);
+                    $scope.report = "";
+                });
+            }
+
+            $scope.display_id_act = function () {
+                $scope.report = "Loading, Please Wait ...";
+                $scope.student_id = "";
+                $http.get("/MISC/find_id?student_name=" + $scope.student_activated).then(function (response) {
+                    $scope.student_id = response.data;//alert(response.data);
+                    $scope.report = "";
+                });
+            }
+
+            $scope.display_id_deact = function () {
+                $scope.report = "Loading, Please Wait ...";
+                $scope.student_id = "";
+                $http.get("/MISC/find_id?student_name=" + $scope.student_deactivated).then(function (response) {
+                    $scope.student_id = response.data;//alert(response.data);
+                    $scope.report = "";
+                });
+            }
+
+            $scope.display_id_stat = function () {
+                $scope.report = "Loading, Please Wait ...";
+                $scope.student_id = "";
+                $http.get("/MISC/find_id?student_name=" + $scope.student_name_status).then(function (response) {
+                    $scope.student_id = response.data;//alert(response.data);
+                    $scope.report = "";
+                });
+            }
+
+            $scope.activate = function () {
+                if (!$scope.student_deactivated) {
+                    alert("Select Student to Activate ...");
+                }
+                else {
+                    $scope.report = "Loading, Please Wait ...";
+                    $http.post("/MISC/activate?student_id=" + $scope.student_id).then(function (response) {
+                        alert(response.data);
+                        $scope.report = "";
+                        $window.location.reload();
+                    });
+                }
+            }
+
+            $scope.deactivate = function () {
+                if (!$scope.student_activated) {
+                    alert("Select Student to De-activate ...");
+                }
+                else {
+                    $scope.report = "Loading, Please Wait ...";
+                    $http.post("/MISC/deactivate?student_id=" + $scope.student_id).then(function (response) {
+                        alert(response.data);
+                        $scope.report = "";
+                        $window.location.reload();
+                    });
+                }
+            }
+
+
+            $scope.set_scholarship_status = function () {
+                if (!$scope.student_name_status || !$scope.student_status) {
+                    alert("Select Student Name and Status ...");
+                }
+                else {
+                    $scope.report = "Loading, Please Wait ...";
+                    $http.post("/MISC/set_scholarship_status?student_id=" + $scope.student_id + "&&student_status=" + $scope.student_status).then(function (response) {
+                        alert(response.data);
+                        $scope.report = "";
+                        $scope.student_id = "";
+                    });
+                }
+
+            }
+
+    });
+</script>

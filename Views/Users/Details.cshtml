@@ -1,0 +1,100 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_user
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br /><br />
+<h3 class="text-center">Details of Selected Record</h3>
+
+<div>
+   
+    <dl class="dl-horizontal">
+
+        <!-- <dt>
+        @Html.DisplayNameFor(model => model.Surname)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Surname)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Other_Name)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Other_Name)
+    </dd>-->
+
+        <dt>
+            <label >Full Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Full_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.School)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.School)
+        </dd>
+
+         <dt>
+         <label> Role(s)</label>
+     </dt>
+
+     <dd>
+         @Html.DisplayFor(model => model.Department)
+     </dd>
+
+        <dt>
+            <label >Status</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category_Status)
+        </dd>
+
+        <dt>
+            <label >User Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+        <!--<dt>
+            @Html.LabelFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.PasswordFor(model => model.Password)
+        </dd>-->
+
+        <dt>
+            <label >Registerd By</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Registered_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.p_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

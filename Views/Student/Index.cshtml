@@ -1,0 +1,123 @@
+﻿@model IEnumerable<WEB_SCONET_MANAGEMENT.table_student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Student Module</h1>
+
+
+<h3 class="text-center">Current Student's List</h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<!-- ///////////////////////////////////////// START OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+<div class="form-group col-lg-6" style="float:none; margin: 0 auto">
+    <label class="control-label col-md-2">Class</label>
+    <div class="col-md-10">
+       <select ng-model="clas" ng-change="display_student()" class="form-control"><option value="">Select Class</option><option ng-repeat="b in jclass" value="{{b.Class}}">{{b.Class}}</option></select>
+       </div>
+</div>
+<!-- ///////////////////////////////////////// END OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+<hr class="error_line" />
+<h5 style=" text-align: center; color:darkred" class="error_message"> {{report}} </h5>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped text-center">
+    <tr>
+        <th class="text-center">
+            Student ID
+        </th>
+        
+        <th class="text-center">
+           Full Name
+        </th>
+
+        <th class="text-center">
+            Gender
+        </th>
+
+        <th class="text-center">
+            Class
+        </th>
+
+        <th class="text-center">
+            Admission Year
+        </th>
+
+        <th class="text-center">
+            Stud. Phone No
+        </th>
+       
+       
+       
+
+       
+        
+        <th></th>
+    </tr>
+
+
+    <tr ng-repeat="m in jstudent">
+        <td>
+            {{m.Student_ID}} 
+        </td>
+       
+        <td>
+            {{m.Full_Name}} 
+        </td>
+
+        <td>
+            {{m.Gender}}
+        </td>
+
+        <td>
+            {{m.Class}}
+        </td>
+
+        <td>
+             {{m.Year_of_Admission}}
+        </td>
+       
+        <td>
+              {{m.Student_Tel}}
+        </td>
+
+        <td>
+           <a ng-href="/Student/Edit/{{m.p_id}}">Edit</a> |
+            <a ng-href="/Student/Details/{{m.p_id}}">Details</a> |
+            <a ng-href="/Student/Delete/{{m.p_id}}">Delete</a>
+</td>
+    </tr>
+
+
+</table>
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $window, $http) {
+
+        $scope.report = "Loading, please wait ...";
+        $http.post("/Student/display_class1").then(function (response) {
+             $scope.jclass = response.data;
+        });
+
+        //alert("Hello");
+
+        $http.post("/Student/display_student_all").then(function (response) {
+             $scope.jstudent = response.data
+        });
+        $scope.report = "";
+
+        $scope.display_student = function () {
+            $scope.report = "Loading, please wait ...";
+            $http.post("/Student/display_student_class?clas=" + $scope.clas).then(function (response) {
+                $scope.jstudent = response.data;
+                $scope.report = "";
+            });
+        }
+
+    });
+    </script>

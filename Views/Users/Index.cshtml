@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WEB_SCONET_MANAGEMENT.table_user>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/><br/><br/>
+<h3 class="text-center">List of Current Users</h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped text-center" >
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Full_Name)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.School)
+        </th>
+      
+        <th class="text-center">
+           User Name
+        </th>
+       
+        <th class="text-center">
+            Registered By
+        </th>
+
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Full_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.School)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Name)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Registered_By)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.p_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.p_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.p_id })
+        </td>
+    </tr>
+}
+
+</table>

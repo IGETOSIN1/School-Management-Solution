@@ -1,0 +1,1316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model_School.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="table_act">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Act" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_activity">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Activity" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Times" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_boarding">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Boarding" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Feeding" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="T_Short" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="T_Long" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_c_b">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount_Due" Type="decimal" Precision="65" Scale="0" Nullable="false" />
+    <Property Name="Amount_Paid" Type="decimal" Precision="65" Scale="0" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="65" Scale="0" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Purpose" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_c_b_sum">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="65" Scale="0" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.sconet-ms.table_c_o' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="table_c_o">
+    <Key>
+      <PropertyRef Name="Character" />
+      <PropertyRef Name="L_U" />
+    </Key>
+    <Property Name="Character" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_caretaker">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Activity" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Supervisor" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_catalogue">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Author" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Url" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_class">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_class_allocation">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Teacher" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_commendation">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Commendation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Commendation_Staff" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Commendation_Date" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_comment_term">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark_Teacher" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark_Principal" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="No_of_time_school_open" Type="int" Nullable="false" />
+    <Property Name="No_of_time_student_present" Type="int" Nullable="false" />
+    <Property Name="Comment_Punctuality" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="General_Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Note_to_Parent" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Concentration" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Neatness" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Comportment" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Relation_with_Peer" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Obedience" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Punctuality" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark_Psycomotor" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date_Vacation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date_Resumption" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_comment_term_mid">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark_Teacher" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark_Principal" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="No_of_time_school_open" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="No_of_time_student_present" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Comment_Punctuality" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="General_Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Note_to_Parent" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Concentration" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Neatness" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Comportment" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Relation_with_Peer" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Obedience" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Punctuality" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark_Psycomotor" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date_Vacation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date_Resumption" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_configuration">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_of_School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Upload_Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" />
+    <Property Name="Website" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_default_comment">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="From1" Type="decimal" Precision="65" Scale="0" Nullable="false" />
+    <Property Name="To1" Type="decimal" Precision="65" Scale="3" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Reg_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_exam">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question_Number" Type="int" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Question" Type="text" Nullable="false" />
+    <Property Name="A" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="B" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="C" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="D" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Answer" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Time_Allowed" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Choice" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Url" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_exam_student">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question_Number" Type="int" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Question" Type="text" Nullable="false" />
+    <Property Name="Answer" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Choice" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Url" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_exam1">
+    <Key>
+      <PropertyRef Name="Question_Number" />
+    </Key>
+    <Property Name="Question_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Question" Type="text" Nullable="false" />
+    <Property Name="A" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="B" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="C" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="D" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Answer" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Time_Allowed" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_expenditure">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Expenses" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Voucher_No" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Item_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_expenditure_list">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Expenses" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Item_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_fees">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Cat_of_Payment" Type="varchar" MaxLength="255" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_fees_status">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Boarding" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Feeding" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="T_Long" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="T_Short" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_grade_range">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="From1" Type="decimal" Precision="65" Scale="0" Nullable="false" />
+    <Property Name="To1" Type="decimal" Precision="65" Scale="3" Nullable="false" />
+    <Property Name="Grade" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Reg_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_inventory_detail">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Quantity_In" Type="int" Nullable="false" />
+    <Property Name="Quantity_Out" Type="int" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_inventory_summary">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Quantity_Left" Type="int" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_mark_range">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Ca" Type="int" Nullable="false" />
+    <Property Name="Second_Ca" Type="int" Nullable="false" />
+    <Property Name="Exam" Type="int" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_p_p1">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="name_student" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="g_school" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payment_alert">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount_Paid" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Balance" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payment_analysis">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="s_n" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Payment_Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Teller_No" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Payment_Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount_Paid" Type="int" Nullable="false" />
+    <Property Name="Amount_Left" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Id" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="student_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount_Due" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Receipt_No" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Status1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payment_fees">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount_Due" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Amount_Paid" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" />
+    <Property Name="Student_Status1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payment_fees_detail">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Amount_Paid" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Payment_Method" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Teller_Number" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Receipt_Number" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Status1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payment_fees_prac">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount_Due" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Amount_Paid" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payment_others">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payroll_config">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bank_Account" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payroll_register">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Staff_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Actual_Salary" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Social_Saving" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Compulsory_Saving" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Overtime" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Bonus" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Tuition_Deduct" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Loan_Deduct" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Tax_Deduct" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bank_Account" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bank_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Account_Type" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Beneficiary_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Currency_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_payroll_salary">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Staff_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Actual_Salary" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Social_Saving" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Compulsory_Saving" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Overtime" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Bonus" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Tuition_Deduct" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Loan_Deduct" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Tax_Deduct" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bank_Account" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bank_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Account_Type" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Beneficiary_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Currency_Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="funding_bank" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="funding_account" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_pin">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Pin" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_pin_history">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Pin" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_promotion_range">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="From1" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="To1" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Promotion_Comment" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_promotion_status">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Promotion_Comment" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_punishment">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Punishment" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Punishment_Staff" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Punishment_Date" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_que">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="que" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_result">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Score_CA" Type="int" Nullable="false" />
+    <Property Name="Score_Exam" Type="int" Nullable="false" />
+    <Property Name="Score_Total" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Teacher_Signature" Type="varchar" MaxLength="255" />
+    <Property Name="Score_CA1" Type="int" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Pre_Comment" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_result_cbt">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject_Code" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Score" Type="int" Nullable="false" />
+    <Property Name="Score_Percent" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="No_of_Question" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Time_Taken" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Question_Attempted" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Question_Unattempted" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Duration" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Grade" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_result_mid">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Score_CA" Type="int" Nullable="false" />
+    <Property Name="Score_Exam" Type="int" Nullable="false" />
+    <Property Name="Score_Total" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Teacher_Signature" Type="varchar" MaxLength="255" />
+    <Property Name="Score_CA1" Type="int" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Pre_Comment" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_result_session">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Score_First_Term" Type="int" Nullable="false" />
+    <Property Name="Score_Second_Term" Type="int" Nullable="false" />
+    <Property Name="Score_Third_Term" Type="int" Nullable="false" />
+    <Property Name="Score_Session" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Teacher_Signature" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Score_CA" Type="int" Nullable="false" />
+    <Property Name="Score_CA1" Type="int" Nullable="false" />
+    <Property Name="Score_Exam" Type="int" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_result_test">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Score_CA" Type="int" Nullable="false" />
+    <Property Name="Score_Exam" Type="int" Nullable="false" />
+    <Property Name="Score_Total" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remark" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Teacher_Signature" Type="varchar" MaxLength="255" />
+    <Property Name="Score_CA1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_resumption">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Resumption_Statement" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_resumption_mid">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Resumption_Statement" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_reward">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Reward" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Reward_Staff" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Reward_Date" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.sconet-ms.table_sae' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="table_sae">
+    <Key>
+      <PropertyRef Name="sae" />
+      <PropertyRef Name="L_U" />
+    </Key>
+    <Property Name="sae" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_schools">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" />
+    <Property Name="Pre_id" Type="varchar" MaxLength="255" />
+    <Property Name="School_Name" Type="varchar" MaxLength="255" />
+    <Property Name="s_t" Type="varchar" MaxLength="10" />
+    <Property Name="S_Status" Type="varchar" MaxLength="255" />
+    <Property Name="sub_domain" Type="varchar" MaxLength="255" />
+    <Property Name="root" Type="varchar" MaxLength="255" />
+    <Property Name="root_p" Type="varchar" MaxLength="255" />
+    <Property Name="L_U" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="table_session">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_sms_balance">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_of_School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_sms_history">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="School_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="SMS_Added" Type="decimal" Precision="65" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_staff">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Other_Name" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_student">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Other_Name" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date_of_Birth" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Age" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Tel" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Year_of_Admission" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Home_Town" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="State_of_Origin" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Home_Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Occupation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Mother_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Mother_Phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Mother_Occupation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Contact_Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Religion" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class_Teacher" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" />
+    <Property Name="Term" Type="varchar" MaxLength="255" />
+    <Property Name="g_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="g_phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="g_occupation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="g_email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="mother_email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Status1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Scholarship_Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_student_old">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Other_Name" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date_of_Birth" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Age" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Tel" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Year_of_Admission" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Home_Town" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="State_of_Origin" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Home_Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Occupation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Father_Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Mother_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Mother_Phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Mother_Occupation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Contact_Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Religion" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class_Teacher" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" />
+    <Property Name="Term" Type="varchar" MaxLength="255" />
+    <Property Name="g_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="g_phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="g_occupation" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="g_email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="mother_email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Status1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Scholarship_Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_student_user">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="User_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="255" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_subject">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_subject_allocation">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Teacher" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_subject_registration">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_term">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_trait">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Qualities" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Excellent" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Good" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Fair" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Poor" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_trait_mid">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Student_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Qualities" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Excellent" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Good" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Fair" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Poor" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Term" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_user">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Other_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Category_Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="User_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Registered_By" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_verify_schoolms">
+    <Key>
+      <PropertyRef Name="p_id" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="School_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="School_ID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Campus" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Pre_id" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Key1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="connection_string" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="s_t" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_web">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Content" Type="text" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="table_year">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_U" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Model_SchoolStoreContainer">
+    <EntitySet Name="table_act" EntityType="Self.table_act" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_activity" EntityType="Self.table_activity" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_boarding" EntityType="Self.table_boarding" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_c_b" EntityType="Self.table_c_b" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_c_b_sum" EntityType="Self.table_c_b_sum" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_caretaker" EntityType="Self.table_caretaker" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_catalogue" EntityType="Self.table_catalogue" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_class" EntityType="Self.table_class" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_class_allocation" EntityType="Self.table_class_allocation" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_commendation" EntityType="Self.table_commendation" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_comment_term" EntityType="Self.table_comment_term" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_comment_term_mid" EntityType="Self.table_comment_term_mid" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_configuration" EntityType="Self.table_configuration" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_default_comment" EntityType="Self.table_default_comment" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_exam" EntityType="Self.table_exam" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_exam_student" EntityType="Self.table_exam_student" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_exam1" EntityType="Self.table_exam1" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_expenditure" EntityType="Self.table_expenditure" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_expenditure_list" EntityType="Self.table_expenditure_list" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_fees" EntityType="Self.table_fees" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_fees_status" EntityType="Self.table_fees_status" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_grade_range" EntityType="Self.table_grade_range" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_inventory_detail" EntityType="Self.table_inventory_detail" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_inventory_summary" EntityType="Self.table_inventory_summary" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_mark_range" EntityType="Self.table_mark_range" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_p_p1" EntityType="Self.table_p_p1" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payment_alert" EntityType="Self.table_payment_alert" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payment_analysis" EntityType="Self.table_payment_analysis" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payment_fees" EntityType="Self.table_payment_fees" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payment_fees_detail" EntityType="Self.table_payment_fees_detail" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payment_fees_prac" EntityType="Self.table_payment_fees_prac" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payment_others" EntityType="Self.table_payment_others" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payroll_config" EntityType="Self.table_payroll_config" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payroll_register" EntityType="Self.table_payroll_register" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_payroll_salary" EntityType="Self.table_payroll_salary" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_pin" EntityType="Self.table_pin" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_pin_history" EntityType="Self.table_pin_history" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_promotion_range" EntityType="Self.table_promotion_range" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_promotion_status" EntityType="Self.table_promotion_status" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_punishment" EntityType="Self.table_punishment" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_que" EntityType="Self.table_que" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_result" EntityType="Self.table_result" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_result_cbt" EntityType="Self.table_result_cbt" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_result_mid" EntityType="Self.table_result_mid" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_result_session" EntityType="Self.table_result_session" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_result_test" EntityType="Self.table_result_test" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_resumption" EntityType="Self.table_resumption" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_resumption_mid" EntityType="Self.table_resumption_mid" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_reward" EntityType="Self.table_reward" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_schools" EntityType="Self.table_schools" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_session" EntityType="Self.table_session" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_sms_balance" EntityType="Self.table_sms_balance" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_sms_history" EntityType="Self.table_sms_history" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_staff" EntityType="Self.table_staff" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_student" EntityType="Self.table_student" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_student_old" EntityType="Self.table_student_old" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_student_user" EntityType="Self.table_student_user" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_subject" EntityType="Self.table_subject" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_subject_allocation" EntityType="Self.table_subject_allocation" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_subject_registration" EntityType="Self.table_subject_registration" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_term" EntityType="Self.table_term" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_trait" EntityType="Self.table_trait" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_trait_mid" EntityType="Self.table_trait_mid" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_user" EntityType="Self.table_user" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_verify_schoolms" EntityType="Self.table_verify_schoolms" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_web" EntityType="Self.table_web" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_year" EntityType="Self.table_year" Schema="sconet-ms" store:Type="Tables" />
+    <EntitySet Name="table_c_o" EntityType="Self.table_c_o" store:Type="Tables" store:Schema="sconet-ms">
+      <DefiningQuery>SELECT
+`table_c_o`.`Character`, 
+`table_c_o`.`L_U`
+FROM `table_c_o` AS `table_c_o`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="table_sae" EntityType="Self.table_sae" store:Type="Tables" store:Schema="sconet-ms">
+      <DefiningQuery>SELECT
+`table_sae`.`sae`, 
+`table_sae`.`L_U`
+FROM `table_sae` AS `table_sae`</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

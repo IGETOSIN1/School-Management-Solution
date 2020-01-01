@@ -1,0 +1,650 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_result
+
+@{
+    ViewBag.Title = "Input_Result_Group";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Result Module</h1>
+
+<h3 class="text-center"> Online Result Computation </h3>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.School)
+    @Html.HiddenFor(model => model.Registered_By)
+   
+
+
+
+    <div class="form-horizontal">
+        <h5 style=" text-align: center; color:darkred" class="error_message"> {{report}} </h5>
+        <hr class="error_line" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      
+        <!-- ///////////////////////////////////////// START OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+        <div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Type</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Grade, (IEnumerable<SelectListItem>)ViewBag.categor, "Select", new { @class = "form-control", @ng_model = "category" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Sess.</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Session, (IEnumerable<SelectListItem>)ViewBag.sessio, "Select", new { @class = "form-control", @ng_model = "sessio" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Term</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Term, (IEnumerable<SelectListItem>)ViewBag.ter, "Select", new { @class = "form-control", @ng_model = "term" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Class</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Class, (IEnumerable<SelectListItem>)ViewBag.clas, "Select", new { @class = "form-control", @ng_model = "clas", @ng_change="display_student()" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        <!-- ///////////////////////////////////////// END OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+
+
+       <!-- ///////////////////////////////////////// START OF TABLE /////////////////////////////////////////////////-->
+
+        <table class="table table-bordered table-condensed table-hover table-responsive table-striped text-center">
+            <tr>
+                <th class=" text-center">
+                    Name of Student
+                </th>
+                <th class=" text-center">
+                    Subject
+                </th>
+                <th class=" text-center">
+                   First CA. Score
+                </th>
+                <th class=" text-center">
+                   Second CA. Score
+                </th>
+                <th class=" text-center">
+                    Examination Score
+                </th>
+                <th class=" text-center">
+                    Action
+                </th>
+            </tr>
+
+           
+            <tr>
+                <td><select class="form-control" ng-model="student_name1" ng-change="t1()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject1", @ng_change = "u1()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control",@ng_model="score_ca1", @ng_change="chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca11", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam1", @ng_change = "chk3()" } }) </td>
+               <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id1" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert1()" /> </td>
+            </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name2" ng-change="t2()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject2", @ng_change = "u2()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca2", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca22", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam2", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id2" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert2()" />  </td>
+             </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name3" ng-change="t3()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject3", @ng_change = "u3()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca3", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca33", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam3", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id3" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert3()" /> </td>
+            </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name4" ng-change="t4()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject4", @ng_change = "u4()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca4", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca44", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam4", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id4" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert4()" /> </td>
+            </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name5" ng-change="t5()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject5", @ng_change = "u5()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca5", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca55", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam5", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id5" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert5()" /> </td>
+             </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name6" ng-change="t6()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                 <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject6", @ng_change = "u6()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca6", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca66", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam6", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id6" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert6()" /> </td>
+            </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name7" ng-change="t7()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject7", @ng_change = "u7()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca7", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca77", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam7", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id7" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert7()" /> </td>
+             </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name8" ng-change="t8()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                 <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject8", @ng_change = "u8()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca8", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca88", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam8", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id8" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert8()" /> </td>
+             </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name9" ng-change="t9()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                 <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject9", @ng_change = "u9()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca9", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca99", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam9", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id9" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert9()" /> </td>
+             </tr>
+
+            <tr>
+                <td><select class="form-control" ng-model="student_name10" ng-change="t10()"><option value="">Select</option><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select></td>
+                 <td>@Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subject10", @ng_change = "u10()" })</td>
+                <td>@Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca10", @ng_change = "chk1()" } })  </td>
+                <td>@Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca1010", @ng_change = "chk2()" } }) </td>
+                <td>@Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam10", @ng_change = "chk3()" } }) </td>
+                <td>@Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id10" } }) <input type="button" value="Submit" class="btn btn-primary" ng-click="insert10()" /> </td>
+             </tr>
+                  
+        </table>
+
+       
+        <p class="hidden">
+        <input type="text" ng-model="g1">
+        <input type="text" ng-model="g2">
+        <input type="text" ng-model="g3">
+            </p>
+        {{loading}}
+        <!-- ///////////////////////////////////////// END OF TABLE /////////////////////////////////////////////////-->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Submit All" class="btn btn-primary" ng-click="insertall()" /> &nbsp; <input type="reset" value="Reset/ Clear" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+
+    function sleep() {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + 10000);
+    }
+
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window,$timeout) {
+
+       /* $http.post("/Result/fetchStudent").then(function (response) {
+            $scope.jstudents = response.data;
+        });*/
+       /* $timeout(function () {
+            $http.get("/Result/Insert?student_name=" + $scope.student_name1 + "&&student_id=" + $scope.student_id1 + "&&subject=" + $scope.subject1 + "&&score_ca=" + $scope.score_ca1 + "&&score_ca1=" + $scope.score_ca11 + "&&score_exam=" + $scope.score_exam1 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                alert(response.data);
+            });
+        }, 10000*/
+
+        $scope.display_student=function()
+        {
+            $http.post("/Result/fetchStudent?id=" + $scope.clas).then(function (response) {
+               // alert(response.data);
+                $scope.jstudents = response.data;
+            });
+        }
+
+        $scope.t1=function()
+        {
+            $scope.student_id1 = "loading ...";
+            $http.get("/Result/find_id?student_name="+$scope.student_name1).then(function (response) {
+                $scope.student_id1 = response.data;});
+        }
+        $scope.t2 = function () {
+            $scope.student_id2 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name2).then(function (response) {
+                $scope.student_id2 = response.data;
+            });
+        }
+        $scope.t3 = function () {
+            $scope.student_id3 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name3).then(function (response) {
+                $scope.student_id3 = response.data;
+            });
+        }
+        $scope.t4 = function () {
+            $scope.student_id4 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name4).then(function (response) {
+                $scope.student_id4 = response.data;
+            });
+        }
+        $scope.t5 = function () {
+            $scope.student_id5 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name5).then(function (response) {
+                $scope.student_id5 = response.data;
+            });
+        }
+        $scope.t6 = function () {
+            $scope.student_id6 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name6).then(function (response) {
+                $scope.student_id6 = response.data;
+            });
+        }
+        $scope.t7 = function () {
+            $scope.student_id7 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name7).then(function (response) {
+                $scope.student_id7 = response.data;
+            });
+        }
+        $scope.t8 = function () {
+            $scope.student_id8 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name8).then(function (response) {
+                $scope.student_id8 = response.data;
+            });
+        }
+        $scope.t9 = function () {
+            $scope.student_id9 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name9).then(function (response) {
+                $scope.student_id9 = response.data;
+            });
+        }
+        $scope.t10 = function () {
+            $scope.student_id10 = "loading ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name10).then(function (response) {
+                $scope.student_id10 = response.data;
+            });
+        }
+        /*#####################################################################################################*/
+        $scope.insertall = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                $scope.loading = "Saving all result(s). please, wait for operation to Complete ...";
+                if ($scope.student_name1 && $scope.student_id1 && $scope.subject1 && $scope.score_ca1 && $scope.score_ca11 && $scope.score_exam1)
+                    $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name1 + "&&student_id=" + $scope.student_id1 + "&&subject=" + $scope.subject1 + "&&score_ca=" + $scope.score_ca1 + "&&score_ca1=" + $scope.score_ca11 + "&&score_exam=" + $scope.score_exam1 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+
+                if ($scope.student_name2 && $scope.student_id2 && $scope.subject2 && $scope.score_ca2 && $scope.score_ca22 && $scope.score_exam2)
+                    $scope.report = "Saving, Preparing Response ...";
+                sleep();
+                $http.get("/Result/Insert?student_name=" + $scope.student_name2 + "&&student_id=" + $scope.student_id2 + "&&subject=" + $scope.subject2 + "&&score_ca=" + $scope.score_ca2 + "&&score_ca1=" + $scope.score_ca22 + "&&score_exam=" + $scope.score_exam2 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data; //alert(response.data);
+                });
+
+                if ($scope.student_name3 && $scope.student_id3 && $scope.subject3 && $scope.score_ca3 && $scope.score_ca33 && $scope.score_exam3)
+                    $scope.report = "Saving, Preparing Response ...";
+                sleep();
+                    $http.get("/Result/Insert?student_name=" + $scope.student_name3 + "&&student_id=" + $scope.student_id3 + "&&subject=" + $scope.subject3 + "&&score_ca=" + $scope.score_ca3 + "&&score_ca1=" + $scope.score_ca33 + "&&score_exam=" + $scope.score_exam3 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                        $scope.report = response.data;
+                    });
+
+                    if ($scope.student_name4 && $scope.student_id4 && $scope.subject4 && $scope.score_ca4 && $scope.score_ca44 && $scope.score_exam4)
+                        $scope.report = "Saving, Preparing Response ...";
+                    sleep();
+                        $http.get("/Result/Insert?student_name=" + $scope.student_name4 + "&&student_id=" + $scope.student_id4 + "&&subject=" + $scope.subject4 + "&&score_ca=" + $scope.score_ca4 + "&&score_ca1=" + $scope.score_ca44 + "&&score_exam=" + $scope.score_exam4 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                            $scope.report = response.data;
+                        });
+
+                        if ($scope.student_name5 && $scope.student_id5 && $scope.subject5 && $scope.score_ca5 && $scope.score_ca55 && $scope.score_exam5)
+                            $scope.report = "Saving, Preparing Response ...";
+                        sleep();
+                            $http.get("/Result/Insert?student_name=" + $scope.student_name5 + "&&student_id=" + $scope.student_id5 + "&&subject=" + $scope.subject5 + "&&score_ca=" + $scope.score_ca5 + "&&score_ca1=" + $scope.score_ca55 + "&&score_exam=" + $scope.score_exam5 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                                $scope.report = response.data;
+                            });
+
+                            if ($scope.student_name6 && $scope.student_id6 && $scope.subject6 && $scope.score_ca6 && $scope.score_ca66 && $scope.score_exam6)
+                                $scope.report = "Saving, Preparing Response ...";
+                            sleep();
+                            $http.get("/Result/Insert?student_name=" + $scope.student_name6 + "&&student_id=" + $scope.student_id6 + "&&subject=" + $scope.subject6 + "&&score_ca=" + $scope.score_ca6 + "&&score_ca1=" + $scope.score_ca66 + "&&score_exam=" + $scope.score_exam6 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                                $scope.report = response.data;
+                            });
+
+                            if ($scope.student_name7 && $scope.student_id7 && $scope.subject7 && $scope.score_ca7 && $scope.score_ca77 && $scope.score_exam7)
+                                $scope.report = "Saving, Preparing Response ...";
+                            sleep();
+                            $http.get("/Result/Insert?student_name=" + $scope.student_name7 + "&&student_id=" + $scope.student_id7 + "&&subject=" + $scope.subject7 + "&&score_ca=" + $scope.score_ca7 + "&&score_ca1=" + $scope.score_ca77 + "&&score_exam=" + $scope.score_exam7 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                                $scope.report = response.data;
+                            });
+
+                            if ($scope.student_name8 && $scope.student_id8 && $scope.subject8 && $scope.score_ca8 && $scope.score_ca88 && $scope.score_exam8)
+                                $scope.report = "Saving, Preparing Response ...";
+                            sleep();
+                            $http.get("/Result/Insert?student_name=" + $scope.student_name8 + "&&student_id=" + $scope.student_id8 + "&&subject=" + $scope.subject8 + "&&score_ca=" + $scope.score_ca8 + "&&score_ca1=" + $scope.score_ca88 + "&&score_exam=" + $scope.score_exam8 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                                $scope.report = response.data;
+                            });
+
+                            if ($scope.student_name9 && $scope.student_id9 && $scope.subject9 && $scope.score_ca9 && $scope.score_ca99 && $scope.score_exam9)
+                                $scope.report = "Saving, Preparing Response ...";
+                            sleep();
+                            $http.get("/Result/Insert?student_name=" + $scope.student_name9 + "&&student_id=" + $scope.student_id9 + "&&subject=" + $scope.subject9 + "&&score_ca=" + $scope.score_ca9 + "&&score_ca1=" + $scope.score_ca99 + "&&score_exam=" + $scope.score_exam9 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                                $scope.report = response.data;
+                            });
+
+                            if ($scope.student_name10 && $scope.student_id10 && $scope.subject10 && $scope.score_ca10 && $scope.score_ca1010 && $scope.score_exam10)
+                                $scope.report = "Saving, Preparing Response ...";
+                            sleep();
+                            $http.get("/Result/Insert?student_name=" + $scope.student_name10 + "&&student_id=" + $scope.student_id10 + "&&subject=" + $scope.subject10 + "&&score_ca=" + $scope.score_ca10 + "&&score_ca1=" + $scope.score_ca1010 + "&&score_exam=" + $scope.score_exam10 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                                $scope.report = response.data;
+                            });
+                            $scope.loading = "";
+            }
+        }
+        /*#####################################################################################################*/
+        $scope.insert1 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                if ($scope.student_name1 && $scope.student_id1 && $scope.subject1 && $scope.score_ca1 && $scope.score_ca11 && $scope.score_exam1)       
+                $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name1 + "&&student_id=" + $scope.student_id1 + "&&subject=" + $scope.subject1 + "&&score_ca=" + $scope.score_ca1 + "&&score_ca1=" + $scope.score_ca11 + "&&score_exam=" + $scope.score_exam1 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+
+        }
+        
+        $scope.insert2 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                 if ($scope.student_name2 && $scope.student_id2 && $scope.subject2 && $scope.score_ca2 && $scope.score_ca22 && $scope.score_exam2)
+                $scope.report = "Saving, Preparing Response ...";
+                 $http.get("/Result/Insert?student_name=" + $scope.student_name2 + "&&student_id=" + $scope.student_id2 + "&&subject=" + $scope.subject2 + "&&score_ca=" + $scope.score_ca2 + "&&score_ca1=" + $scope.score_ca22 + "&&score_exam=" + $scope.score_exam2 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data; //alert(response.data);
+                });
+            }
+        }
+
+        $scope.insert3 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                $scope.report = "Saving, Preparing Response ...";
+                if($scope.student_name3 && $scope.student_id3 && $scope.subject3 && $scope.score_ca3 && $scope.score_ca33 && $scope.score_exam3)
+                $http.get("/Result/Insert?student_name=" + $scope.student_name3 + "&&student_id=" + $scope.student_id3 + "&&subject=" + $scope.subject3 + "&&score_ca=" + $scope.score_ca3 + "&&score_ca1=" + $scope.score_ca33 + "&&score_exam=" + $scope.score_exam3 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+        $scope.insert4 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                $scope.report = "Saving, Preparing Response ...";
+                if ($scope.student_name4 && $scope.student_id4 && $scope.subject4 && $scope.score_ca4 && $scope.score_ca44 && $scope.score_exam4)
+                    $http.get("/Result/Insert?student_name=" + $scope.student_name4 + "&&student_id=" + $scope.student_id4 + "&&subject=" + $scope.subject4 + "&&score_ca=" + $scope.score_ca4 + "&&score_ca1=" + $scope.score_ca44 + "&&score_exam=" + $scope.score_exam4 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                        $scope.report = response.data;
+                    });
+            }
+        }
+
+        $scope.insert5 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                $scope.report = "Saving, Preparing Response ...";
+               if ($scope.student_name5 && $scope.student_id5 && $scope.subject5 && $scope.score_ca5 && $scope.score_ca55 && $scope.score_exam5)
+                $http.get("/Result/Insert?student_name=" + $scope.student_name5 + "&&student_id=" + $scope.student_id5 + "&&subject=" + $scope.subject5 + "&&score_ca=" + $scope.score_ca5 + "&&score_ca1=" + $scope.score_ca55 + "&&score_exam=" + $scope.score_exam5 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+        $scope.insert6 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                if ($scope.student_name6 && $scope.student_id6 && $scope.subject6 && $scope.score_ca6 && $scope.score_ca66 && $scope.score_exam6)
+                    $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name6 + "&&student_id=" + $scope.student_id6 + "&&subject=" + $scope.subject6 + "&&score_ca=" + $scope.score_ca6 + "&&score_ca1=" + $scope.score_ca66 + "&&score_exam=" + $scope.score_exam6 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+        $scope.insert7 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                if ($scope.student_name7 && $scope.student_id7 && $scope.subject7 && $scope.score_ca7 && $scope.score_ca77 && $scope.score_exam7)
+                    $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name7 + "&&student_id=" + $scope.student_id7 + "&&subject=" + $scope.subject7 + "&&score_ca=" + $scope.score_ca7 + "&&score_ca1=" + $scope.score_ca77 + "&&score_exam=" + $scope.score_exam7 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+        $scope.insert8 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                if ($scope.student_name8 && $scope.student_id8 && $scope.subject8 && $scope.score_ca8 && $scope.score_ca88 && $scope.score_exam8)
+                    $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name8 + "&&student_id=" + $scope.student_id8 + "&&subject=" + $scope.subject8 + "&&score_ca=" + $scope.score_ca8 + "&&score_ca1=" + $scope.score_ca88 + "&&score_exam=" + $scope.score_exam8 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+        $scope.insert9 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                if ($scope.student_name9 && $scope.student_id9 && $scope.subject9 && $scope.score_ca9 && $scope.score_ca99 && $scope.score_exam9)
+                    $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name9 + "&&student_id=" + $scope.student_id9 + "&&subject=" + $scope.subject9 + "&&score_ca=" + $scope.score_ca9 + "&&score_ca1=" + $scope.score_ca99 + "&&score_exam=" + $scope.score_exam9 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+        $scope.insert10 = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else {
+                if ($scope.student_name10 && $scope.student_id10 && $scope.subject10 && $scope.score_ca10 && $scope.score_ca1010 && $scope.score_exam10)
+                    $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name10 + "&&student_id=" + $scope.student_id10 + "&&subject=" + $scope.subject10 + "&&score_ca=" + $scope.score_ca10 + "&&score_ca1=" + $scope.score_ca1010 + "&&score_exam=" + $scope.score_exam10 + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+
+        $scope.chk1 = function () {
+            if ($scope.score_ca1 && (parseInt($scope.score_ca1) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca1 = "";
+            }
+            if ($scope.score_ca2 && (parseInt($scope.score_ca2) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca2 = "";
+            }
+            if ($scope.score_ca3 && (parseInt($scope.score_ca3) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca3 = "";
+            }
+            if ($scope.score_ca4 && (parseInt($scope.score_ca4) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca4 = "";
+            }
+            if ($scope.score_ca5 && (parseInt($scope.score_ca5) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca5 = "";
+            } if ($scope.score_ca6 && (parseInt($scope.score_ca6) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca6 = "";
+            }
+            if ($scope.score_ca7 && (parseInt($scope.score_ca7) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca7 = "";
+            }
+            if ($scope.score_ca8 && (parseInt($scope.score_ca8) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca8 = "";
+            }
+            if ($scope.score_ca9 && (parseInt($scope.score_ca9) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca9 = "";
+            }
+            if ($scope.score_ca10 && (parseInt($scope.score_ca10) > parseInt($scope.g1))) {
+                alert("First CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca10 = "";
+            }
+        }
+      
+        $scope.chk2 = function () {
+            if ($scope.score_ca11 && (parseInt($scope.score_ca11) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca11 = "";
+            }
+            if ($scope.score_ca22 && (parseInt($scope.score_ca22) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca22 = "";
+            }
+            if ($scope.score_ca33 && (parseInt($scope.score_ca33) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca33 = "";
+            }
+            if ($scope.score_ca44 && (parseInt($scope.score_ca44) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca44 = "";
+            }
+            if ($scope.score_ca55 && (parseInt($scope.score_ca55) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca55 = "";
+            } if ($scope.score_ca66 && (parseInt($scope.score_ca66) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca66 = "";
+            }
+            if ($scope.score_ca77 && (parseInt($scope.score_ca77) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca77 = "";
+            }
+            if ($scope.score_ca88 && (parseInt($scope.score_ca88) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca88 = "";
+            }
+            if ($scope.score_ca99 && (parseInt($scope.score_ca99) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca99 = "";
+            }
+            if ($scope.score_ca1010 && (parseInt($scope.score_ca1010) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca1010 = "";
+            }
+        }
+
+        $scope.chk3 = function () {
+            if ($scope.score_exam1 && (parseInt($scope.score_exam1) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam1 = "";
+            }
+            if ($scope.score_exam2 && (parseInt($scope.score_exam2) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam2 = "";
+            }
+            if ($scope.score_exam3 && (parseInt($scope.score_exam3) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam3 = "";
+            }
+            if ($scope.score_exam4 && (parseInt($scope.score_exam4) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam4 = "";
+            }
+            if ($scope.score_exam5 && (parseInt($scope.score_exam5) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam5 = "";
+            } if ($scope.score_exam6 && (parseInt($scope.score_exam6) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam6 = "";
+            }
+            if ($scope.score_exam7 && (parseInt($scope.score_exam7) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam7 = "";
+            }
+            if ($scope.score_exam8 && (parseInt($scope.score_exam8) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam8 = "";
+            }
+            if ($scope.score_exam9 && (parseInt($scope.score_exam9) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam9 = "";
+            }
+            if ($scope.score_exam10 && (parseInt($scope.score_exam10) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam10 = "";
+            }
+        }
+
+
+        $http.get("/Result/marks").then(function (response) {
+            $scope.g1 = response.data.First_Ca;
+            $scope.g2 = response.data.Second_Ca;
+            $scope.g3 = response.data.Exam;
+        });
+
+
+
+
+    });
+    </script>

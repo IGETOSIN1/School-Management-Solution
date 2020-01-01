@@ -1,0 +1,224 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_result
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Result Module</h1>
+
+<h3 class="text-center"> Online Result Computation </h3>
+<hr/>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        <!-- ///////////////////////////////////////// START OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+        <div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Type</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Grade, (IEnumerable<SelectListItem>)ViewBag.categor, "Select", new { @class = "form-control", @ng_model = "category" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Sess.</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Session, (IEnumerable<SelectListItem>)ViewBag.sessio, "Select", new { @class = "form-control", @ng_model = "sessio" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Term</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Term, (IEnumerable<SelectListItem>)ViewBag.ter, "Select", new { @class = "form-control", @ng_model = "term" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Class</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Class, (IEnumerable<SelectListItem>)ViewBag.clas, "Select", new { @class = "form-control", @ng_model = "clas", @ng_change = "display_student()" })
+                        @Html.ValidationMessageFor(model => model.Student_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div>
+
+                <div class="form-group col-xs-6">
+                    <label class="control-label col-md-2">Subject</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.subjec, "Select", new { @class = "form-control", @ng_model = "subjec" })
+                    </div>
+                </div>
+
+            <div class="form-group col-xs-6" >
+                <label class="control-label col-md-2"> Name</label>
+                <div class="col-md-10">
+                    <select class="form-control" ng-model="student_name" ng-change="display_id()"><option ng-repeat="c in mod" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select>
+                </div>
+            </div>
+
+          </div>
+
+       
+        
+        
+         </div>       
+        
+        <!-- ///////////////////////////////////////// END OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+
+        <br/><br /><br /><br />
+        <h5 style=" text-align: center; color:darkred" class="error_message"> {{report}} </h5>
+
+        <hr class="error_line" />
+        <div class="col-lg-6" style="float: none; margin: 0 auto;">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2"> CA. Score</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Score_CA, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca", @ng_change = "chk1()" } })
+                    @Html.ValidationMessageFor(model => model.Score_CA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2"> Exam. Score</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Score_Exam, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_exam", @ng_change = "chk3()" } })
+                    @Html.ValidationMessageFor(model => model.Score_Exam, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @ng_model = "student_id" } })
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Save Score" ng-click="save_result()" class="btn btn-primary" />
+                    <input type="reset" value="Clear" class="btn btn-danger" />
+                </div>
+            </div>
+
+            <div class="form-group" style="visibility:hidden;">
+                <label class="control-label col-md-2"> Second CA. </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Score_CA1, new { htmlAttributes = new { @class = "form-control", @ng_model = "score_ca1", @ng_change = "chk2()" } })
+                    @Html.ValidationMessageFor(model => model.Score_CA1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <p class="hidden">
+                <input type="text" ng-model="g1">
+                <input type="text" ng-model="g2">
+                <input type="text" ng-model="g3">
+            </p>
+
+        </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<!--#############################################################################################-->
+<iframe src="/set_grade_remark.aspx" style="width:50%;height:50%; visibility:hidden;"></iframe>
+<!--#############################################################################################-->
+
+
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $window, $http) {
+        
+        $scope.display_student = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Result/fetchStudent?id=" + $scope.clas).then(function (response) {
+                $scope.mod = response.data;
+                $scope.report = "";
+            });
+        }
+
+        $scope.display_id = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.get("/Result/find_id?student_name=" + $scope.student_name).then(function (response) {
+                $scope.student_id = response.data;
+                $scope.report = "";
+            });
+        }
+
+        $scope.save_result = function ()
+        {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas || !$scope.subjec) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else if (!$scope.student_id) {
+                alert("Select Name of Student ...");
+            }
+            else {
+                $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Result/Insert?student_name=" + $scope.student_name + "&&student_id=" + $scope.student_id + "&&subject=" + $scope.subjec + "&&score_ca=" + $scope.score_ca + "&&score_exam=" + $scope.score_exam + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                    $scope.score_ca = "";
+                   // $scope.score_ca1 = "";
+                    $scope.score_exam = "";
+                });
+            }
+        }
+
+        $http.get("/Result/marks").then(function (response) {
+            $scope.g1 = response.data.First_Ca;
+            $scope.g2 = response.data.Second_Ca;
+            $scope.g3 = response.data.Exam;
+        });
+
+        $scope.chk1 = function () {
+            if ($scope.score_ca && (parseInt($scope.score_ca) > parseInt($scope.g1))) {
+                alert("CA. Score Cannot be greater than " + $scope.g1);
+                $scope.score_ca = "";
+            }
+        }
+
+        $scope.chk2 = function () {
+           /* if ($scope.score_ca1 && (parseInt($scope.score_ca1) > parseInt($scope.g2))) {
+                alert("CA. Score Cannot be greater than " + $scope.g2);
+                $scope.score_ca1 = "";
+            }*/
+        }
+
+        $scope.chk3 = function () {
+            if ($scope.score_exam && (parseInt($scope.score_exam) > parseInt($scope.g3))) {
+                alert("Exam CA. Score Cannot be greater than " + $scope.g3);
+                $scope.score_exam = "";
+            }
+        }
+
+    });
+
+    </script>

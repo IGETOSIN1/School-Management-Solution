@@ -1,0 +1,285 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Student Module</h1>
+
+<h3 class="text-center">Details of @Html.DisplayFor(model => model.Full_Name)</h3>
+
+<div>
+  
+    <dl class="dl-horizontal">
+
+        <div class="col-xs-4">
+            <dt>
+                Student's ID
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Student_ID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+
+            <dt>
+                Other Name(s)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Other_Name)
+            </dd>
+
+            <dt>
+               Full Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Full_Name)
+            </dd>
+
+            <dt>
+                Date of Birth
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date_of_Birth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Class)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Class)
+            </dd>
+
+            <dt>
+                Entrance Age
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+
+            <dt>
+                Phone No
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Student_Tel)
+            </dd>
+
+            <dt>
+                Current Status
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Student_Status1)
+            </dd>
+
+            <dt>
+               Scholarship Status
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Scholarship_Status)
+            </dd>
+
+            <dt>
+                Registration Date
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            </div>
+
+        <div class="col-xs-4">
+            <dt>
+                Admission Year
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Year_of_Admission)
+            </dd>
+
+            <dt>
+                Home Town
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Home_Town)
+            </dd>
+
+            <dt>
+               State of Origin
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.State_of_Origin)
+            </dd>
+
+            <dt>
+              Home Address
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Home_Address)
+            </dd>
+
+            <dt>
+               Father's Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Father_Name)
+            </dd>
+
+            <dt>
+              Father's Phone No.
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Father_Phone)
+            </dd>
+
+            <dt>
+               Father's Occupation
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Father_Occupation)
+            </dd>
+
+            <dt>
+                Father's Email
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Father_Email)
+            </dd>
+
+            <dt>
+                Mother's Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mother_Name)
+            </dd>
+
+            <dt>
+               Mother's Phone No
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mother_Phone)
+            </dd>
+
+            </div>
+        
+
+        <div class="col-xs-4">
+            <dt>
+                Mother's Occupation
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mother_Occupation)
+            </dd>
+
+            <dt>
+                Contact Address
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Contact_Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Religion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Religion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.School)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.School)
+            </dd>
+
+            <dt>
+                Student Status
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Student_Status)
+            </dd>
+
+            <dt>
+                Guardian's Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.g_name)
+            </dd>
+
+            <dt>
+                Guardian's Phone No.
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.g_phone)
+            </dd>
+
+            <dt>
+                Guardian's Occupation
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.g_occupation)
+            </dd>
+
+            <dt>
+                Guardian's Email
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.g_email)
+            </dd>
+
+            <dt>
+                Mother's Email
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mother_email)
+            </dd>
+
+        </div>
+    </dl>
+    </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.p_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

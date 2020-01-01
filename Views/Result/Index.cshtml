@@ -1,0 +1,210 @@
+﻿@model IEnumerable<WEB_SCONET_MANAGEMENT.table_result>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Result Module</h1>
+
+<h3 class="text-center"> Current Scores Report </h3>
+<hr />
+
+ <!-- ///////////////////////////////////////// START OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+<div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Type</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="category">
+                    <option value="">Select</option>
+                    <option value="Terminal">Terminal</option>
+                    <option value="Mid-Term">Mid-Term</option>
+                </select> 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Sess.</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="sessio">
+                    <option value="">Select</option>
+                    <option value="2018/2019">2018/2019</option>
+                    <option value="2019/2020">2019/2020</option>
+                    <option value="2020/2021">2020/2021</option>
+                    <option value="2021/2022">2021/2022</option>
+                </select> 
+                  
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Term</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="ter">
+                    <option value="">Select</option>
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                </select>
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Class</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="clas" ng-change="display_student()">
+                    <option ng-repeat="m in mclass" value="{{m.Class}}">{{m.Class}}</option>
+                </select>
+               
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<br/><br/><br />
+<div class="form-group col-lg-6" style="float: none; margin: 0 auto;">
+    <label class="control-label col-md-2">Student</label>
+    <div class="col-md-10">
+        <select class="form-control" ng-model="student_name" ng-change="searchResult_Name()"><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select>
+ </div>
+</div>
+<br /><br />
+<hr />
+<!-- ///////////////////////////////////////// END OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+
+
+
+
+<p>
+    @Html.ActionLink("Add New Score", "Create")
+</p>
+
+<h5 style=" text-align: center; color:darkred" class="error_message"> {{report}} </h5>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped text-center">
+    <tr>
+        <th class="text-center">
+            Student Name
+        </th>
+
+        <th class="text-center">
+            Student ID
+        </th>
+       
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+       
+        <th class="text-center">
+            CA. Score
+        </th>
+        <th class="text-center">
+            Exam. Score
+        </th>
+               
+        <th></th>
+    </tr>
+
+    <tr ng-repeat="std in dstudents">
+        <td>
+            {{std.Student_Name}}
+        </td>
+        <td>
+            {{std.Student_ID}}
+        </td>
+
+        <td>
+            {{std.Subject}}
+        </td>
+
+        <td>
+            {{std.Score_CA}}
+        </td>
+      
+        <td>
+            {{std.Score_Exam}}
+        </td>
+
+        <td>
+            <a ng-href="/Result/Delete/{{std.p_id}}">Delete</a>
+        </td>
+    </tr>
+
+<!--@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student_ID)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Score_CA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score_Exam)
+        </td>
+       
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Score_CA1)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.p_id })
+        </td>
+    </tr>
+}-->
+
+</table>
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window) {
+
+        $http.get("/Result/fetchClass").then(function (response) {
+            $scope.mclass = response.data; //alert(response.data);
+        });
+
+        $scope.display_student = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Result/fetchStudent?id=" + $scope.clas).then(function (response) {
+                $scope.jstudents = response.data; //alert(response.data);
+                $scope.report = "";
+
+                $http.post("/Result/searchResult?category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&ter=" + $scope.ter + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = "Loading, Please Wait ...";
+                    $scope.dstudents = response.data; //alert(response.data);
+                    $scope.report = "";
+                });
+
+            });
+        }
+
+
+        $scope.searchResult_Name = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Result/searchResult_Name?category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&ter=" + $scope.ter + "&&clas=" + $scope.clas + "&&student_name=" + $scope.student_name).then(function (response) {
+                $scope.dstudents = response.data; //alert(response.data);
+                $scope.report = "";
+            });
+        }
+
+    });
+    </script>

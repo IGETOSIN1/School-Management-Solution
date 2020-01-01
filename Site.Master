@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WEB_SCONET_MANAGEMENT.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title>School Management Solution-  </title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+ <style type="text/css">
+   .menu
+   {
+     background-color:DarkSlateGray; color: palegreen; height: 59px; width: 152px; color: White; border-radius: 2px; border: 2px solid firebrick; font-family: Times New Roman; font-weight: bold; font-size: 14px; margin: 5px;
+   }
+   .divider
+   {
+    width: 45px; height: auto; display:inline;   
+    }
+.lab
+{
+    font-family: Times New Roman; font-size: 15px;
+}
+.txt_long
+{
+   width: 250px; height: 21px; border-radius: 2px; color: Black; text-align: center; font-family: Verdana; font-size: 12px; margin-bottom: 17px;  
+}
+.ddp_long
+{
+   width: 220px; height: 25px; color: Black; text-align: center; font-family: Verdana; font-size: 12px; margin-bottom: 17px;  
+}
+.ddp_vlong
+{
+   width: 350px; height: 25px; color: Black; text-align: center; font-family: Verdana; font-size: 12px; margin-bottom: 17px;  
+}
+
+.btn_save
+{
+    background-color: firebrick; color: Window; border: 2px solid mediumblue; font-family: Segoe UI; font-size: 12px; float: right; margin-right: 20px; height: 36px; width: 131px; margin-top: 12px; 
+}
+
+.btn_save_left
+{
+    background-color: firebrick; color: Window; border: 2px solid mediumblue; font-family: Segoe UI; font-size: 12px; float: left; margin-left: 25px; height: 36px; width: 131px; margin-top: 12px; 
+}
+.linep
+{
+ color: Window; width: 1000px;  font-family: Verdana; font-weight: bolder;  margin-top: -58px; 
+ }
+ .result
+ {
+ margin-left: 100px; color: firebrick; font-family: verdana; font-size: 13px;
+ }
+    </style>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color: royalblue;  background-image:url('images/background2.jpg'); background-repeat: no-repeat;background-size: 100% 100%;background-position: center top;background-attachment: fixed;  background-size: cover; color: Window;">
+    <form runat="server">
+    <div class="page">
+
+
+       <div id="wrapper" style=" background-color: deeppink; ">
+  <div id="header"> <asp:Image ID="image_logo" runat="server" alt="tux" style=" width: 60px; height: 71px;" />  <!--<img id="logo" src="images/logo.png" alt="tux" style=" width: 60px; height: 71px;"/>-->
+    <h1> <a href="#" style="color: window;"><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></a></h1>
+    <h3>Online School Portal</h3>
+  </div>
+  <div id="menu">
+    <ul>
+    <label style=" float: left; margin-left: 24px; font-family:Verdana; color: crimson; margin-top: 0px; font-size: 13px; font-weight: bold;"><asp:Label ID="users" runat="server" Text=""></asp:Label></label>
+     <!-- <li><a class="current" href="#">Home</a></li>-->
+      <li><a href="Home/Index" style=" text-transform: uppercase;">Menu</a></li>
+      <li>
+       <asp:Button ID="Button1" runat="server" Text="Log Out" 
+              style=" text-transform: uppercase; color: window; background-color: firebrick" onclick="Button1_Click1" /> </li>
+    </ul>
+  </div>
+  <div id="content1111">
+    
+    <div id="blog" style=" background-color: Black; width: 900px; margin-right: 4px; border-radius: 3px; margin-right:28px;">
+      <div id="post-1" class="post">
+      <!-- ########################### START OF UNIQUE WEB PAGE CONTENT #############################################333 -->
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            <!-- ########################### END OF UNIQUE WEB PAGE CONTENT #############################################333 -->
+            </div>
+         </div>
+    <!-- end #blog -->
+    <div style="clear: both; height: 1px;"></div>
+  </div>
+  <!-- end #content -->
+  <!-- Please do not remove the "Design by" information. -->
+  <div id="footer">
+    <p>Powered by <a href="http://www.schoolnigeria.com.ng/">schoolnigeria.com.ng</a></p>
+  </div>
+  <!-- end footer -->
+</div>
+<!-- end #wrapper -->
+
+        
+    </div>
+    </form>
+</body>
+</html>

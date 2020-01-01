@@ -1,0 +1,294 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_comment_term
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Comment Module</h1>
+
+<h3 class="text-center"> Performance Comment on Student </h3>
+<hr />
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       
+          <!-- ///////////////////////////////////////// START OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+        <div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Type</label>
+                    <div class="col-md-10">
+                        <select class="form-control" ng-model="category">
+                            <option value="">Select</option>
+                            <option value="Terminal">Terminal</option>
+                            <option value="Mid-Term">Mid-Term</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Sess.</label>
+                    <div class="col-md-10">
+                        <select class="form-control" ng-model="sessio">
+                            <option value="">Select</option>
+                            <option value="2018/2019">2018/2019</option>
+                            <option value="2019/2020">2019/2020</option>
+                            <option value="2020/2021">2020/2021</option>
+                            <option value="2021/2022">2021/2022</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Term</label>
+                    <div class="col-md-10">
+                        <select class="form-control" ng-model="term">
+                            <option value="">Select</option>
+                            <option value="First">First</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Class</label>
+                    <div class="col-md-10">
+                        <select class="form-control" ng-model="clas" ng-change="display_student()">
+                            <option ng-repeat="m in mclass" value="{{m.Class}}">{{m.Class}}</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <br /><br /><br />
+        <div class="form-group col-lg-6" style="float: none; margin: 0 auto;">
+            <label class="control-label col-md-2">Student</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="student_name" ng-change="display_id()"><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select>
+            </div>
+        </div>
+       
+        <!-- ///////////////////////////////////////// END OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+        <hr class="error_line" />
+        <h5 style=" text-align: center; color:darkred" class="error_message"> {{report}} </h5>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Teacher's Comments</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Remark_Teacher, new { htmlAttributes = new { @class = "form-control",@ng_model="comment" } })
+                @Html.ValidationMessageFor(model => model.Remark_Teacher, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">No. of Time School Open</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.No_of_time_school_open, new { htmlAttributes = new { @class = "form-control", @ng_model = "school_open",@ng_change="calc()" } })
+                @Html.ValidationMessageFor(model => model.No_of_time_school_open, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">No. of Time Student Present</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.No_of_time_student_present, new { htmlAttributes = new { @class = "form-control", @ng_model = "student_present", @ng_change = "calc()" } })
+                @Html.ValidationMessageFor(model => model.No_of_time_student_present, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">No. of Time Student Absent</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Remark_Principal, new { htmlAttributes = new { @class = "form-control", @ng_model = "student_absent" } })
+                @Html.ValidationMessageFor(model => model.Remark_Principal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.Student_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Student_ID, new { htmlAttributes = new { @class = "form-control",@ng_model="student_id" } })
+                @Html.ValidationMessageFor(model => model.Student_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+               
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Save Comment" class="btn btn-primary" ng-click="save_comment()" />
+            </div>
+        </div>
+    </div>
+    
+
+
+    <hr />    
+    <!-- ############################## START OF PSYCHOMOTOR #########################################-->
+    <div>
+
+        <div class="col-xs-4">
+            <div class="form-group">
+                <label class="control-label col-md-2">Trait</label>
+                <div class="col-md-10">
+                    <select class="form-control" ng-model="trait">
+                        <option value="">Select</option>
+                        <option value="Neatness">Neatness</option>
+                        <option value="Attitude to Work">Attitude to Work</option>
+                        <option value="Attentiveness">Attentiveness</option>
+                        <option value="Verbal Fluency">Verbal Fluency</option>
+                        <option value="Hand Writing">Hand Writing</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="form-group">
+                <label class="control-label col-md-2">Rating</label>
+                <div class="col-md-10">
+                    <select class="form-control" ng-model="rating">
+                        <option value="">Select</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Poor">Poor</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Save Comment" class="btn btn-primary" ng-click="save_trait()" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    
+    <!-- ############################## END OF PSYCHOMOTOR #########################################-->
+    
+}
+
+<hr />
+<br/><br />
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window) {
+
+        $http.get("/Comment/fetchClass").then(function (response) {
+            $scope.mclass = response.data; //alert(response.data);
+        });
+
+        $scope.display_student = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Comment/fetchStudent?id=" + $scope.clas).then(function (response) {
+                $scope.jstudents = response.data; //alert(response.data);
+                $scope.report = "";
+            });
+        }
+
+        $scope.search_comment = function () {
+            $scope.comment = ""; $scope.school_open = ""; $scope.student_present = ""; $scope.student_absent = "";
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Comment/search_comment?category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&student_name=" + $scope.student_name).then(function (response) {
+                $scope.comment = response.data.Remark_Teacher; //alert(response.data);
+                $scope.school_open = response.data.No_of_Time_School_Open;
+                $scope.student_present = response.data.No_of_Time_Student_Present;
+                $scope.report = "";
+            });
+        }
+
+        $scope.display_id = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.get("/Comment/find_id?student_name=" + $scope.student_name).then(function (response) {
+                $scope.student_id = response.data;
+                $scope.report = "";
+            });
+            // SECOND BLOCK WITHIN THE FUNCTION
+            $scope.comment = ""; $scope.school_open = ""; $scope.student_present = ""; $scope.student_absent = "";
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Comment/search_comment?category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&student_name=" + $scope.student_name).then(function (response) {
+                $scope.comment = response.data.Remark_Teacher; //alert(response.data);
+                $scope.school_open = response.data.No_of_time_school_open;
+                $scope.student_present = response.data.No_of_time_student_present;
+                $scope.student_absent = Number($scope.school_open) - Number($scope.student_present);
+                $scope.report = "";
+            });
+
+        }
+
+        $scope.save_comment = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else if (!$scope.student_id) {
+                alert("Select Name of Student ...");
+            }
+            else {
+                $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Comment/Insert_Comment?student_name=" + $scope.student_name + "&&student_id=" + $scope.student_id + "&&comment=" + $scope.comment + "&&school_open=" + $scope.school_open + "&&student_present=" + $scope.student_present + "&&student_absent=" + $scope.student_absent + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                    $scope.comment = "";
+                    $scope.school_open = "";
+                    $scope.student_present = "";
+                    $scope.student_absent = "";
+                });
+            }
+        }
+
+        $scope.save_trait = function () {
+            if (!$scope.category || !$scope.sessio || !$scope.term || !$scope.clas) {
+                alert("Category, Session, Term, and Class must be Selected ...");
+            }
+            else if (!$scope.student_id) {
+                alert("Select Name of Student ...");
+            }
+            else {
+                $scope.report = "Saving, Preparing Response ...";
+                $http.get("/Comment/insert_trait?student_name=" + $scope.student_name + "&&student_id=" + $scope.student_id + "&&trait=" + $scope.trait + "&&remark=" + $scope.rating + "&&category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = response.data;
+                });
+            }
+        }
+
+        $scope.calc = function () {
+            $scope.student_absent = Number($scope.school_open) - Number($scope.student_present);
+        }
+
+    });
+</script>

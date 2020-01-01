@@ -1,0 +1,106 @@
+﻿@model WEB_SCONET_MANAGEMENT.Models.MISC
+
+@{
+    ViewBag.Title = "MILIK";
+}
+
+<h2>MILIK</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>MiscModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.category ,htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.category, (IEnumerable<SelectListItem>)ViewBag.categ, "Select", new { @class = "form-control", @ng_model="lis", @ng_change="test()" } )
+                @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<input type="text" ng-model="tt"><br/>
+{{tt}}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window) {
+
+       /* $http.get("/Student/allstudent").then(function (response) {
+            $scope.students = response.data;
+        });*/
+
+        $scope.test = function () {
+           
+            $http.get("/Misc/chk?st="+$scope.lis).then(function (response) {
+                alert(response.data);
+              //  $scope.x = response.data;
+            });
+          }
+
+        $scope.refresh = function () {
+            $http.get("/Student/allstudent").then(function (response) {
+                $scope.students = response.data;
+            });
+        }
+
+        $scope.display = function (std) {
+            $http({
+                method: "post",
+                url: "/Student/display",
+                params: {
+                    id: JSON.stringify(std.Name)
+                }
+            }).then(function (response) {
+                alert(response.data);
+            });
+           /* $http.get("/Student/display/" + std.Name).then(function (response) {
+                alert(response.data);
+               // $scope.std = response.data;
+                $scope.Name = std.Name;
+                $scope.Sex = std.Sex;
+                $scope.Country = std.Country;
+                $scope.State = std.State;
+                $scope.Class = std.Class;
+            })*/
+        }
+
+        $scope.Add = function () {
+            $http({
+                method: "POST",
+                url: "/Student/StudentReg",
+                data: "{Name:'" + $scope.Name + "',Sex:'" + $scope.Sex + "',Class:'" + $scope.Class + "',Country:'" + $scope.Country + "',State:'" + $scope.State + "'}",
+               // dataType: 'json',
+              //  headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                alert(response.data);
+                $scope.Name = null;
+                $scope.Sex = null;
+                $scope.Class = null;
+                $scope.Country = null;
+                $scope.State = null;
+            });
+        }
+
+    });
+</script>

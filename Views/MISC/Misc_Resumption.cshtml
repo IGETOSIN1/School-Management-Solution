@@ -1,0 +1,106 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_resumption
+
+@{
+    ViewBag.Title = "Misc_Resumption";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Result Module</h1>
+
+<h3 class="text-center"> Set Resumption Date </h3>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h5 style=" text-align: center;" class="error_message"> @ViewBag.report </h5>
+        <hr class="error_line" />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-lg-7" style="float: none; margin: 0 auto;">
+
+            <div class="form-group">
+                <label class="control-label col-md-2" required="required">Category</label>
+                <div class="col-md-10">
+                    <select class="form-control" name="category">
+                        <option value="Select">Select</option>
+                        <option value="Mid-Term">Mid-Term</option>
+                        <option value="Terminal">Terminal</option>
+                    </select>
+                   </div>
+            </div>
+
+            <div class="form-group">
+               <label class = "control-label col-md-2">Next (Resumption Date)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Resumption_Statement, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Resumption_Statement, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Session, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Session, (IEnumerable<SelectListItem>)ViewBag.sessio, "Select", new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.Session, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Term, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Term, (IEnumerable<SelectListItem>)ViewBag.ter, "Select", new { @class = "form-control",@required="required" })
+                    @Html.ValidationMessageFor(model => model.Term, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.School, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.School, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.Registered_By, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Registered_By, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Registered_By, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Confirm Date" class="btn btn-primary" />
+                </div>
+            </div>
+
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

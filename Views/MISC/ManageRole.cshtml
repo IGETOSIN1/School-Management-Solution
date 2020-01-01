@@ -1,0 +1,282 @@
+﻿@model WEB_SCONET_MANAGEMENT.Models.MISC
+@{
+    ViewBag.Title = "ManageRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h3 class="text-center">Manage/ Allocate Role </h3>
+<br/>
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-group col-lg-7" style="float: none; margin: 0 auto;">
+        <label class="control-label col-md-2">Current Users</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.list_of_staff, (IEnumerable<SelectListItem>)ViewBag.list, "Select", new { @class = "form-control", @ng_Change = "test()", @ng_model = "lis" })
+        </div>
+    </div><br/>
+
+<div style="width:60%; float: none; margin: 0 auto;" >  
+    <br/>
+        <h5 style=" text-align: center;" class="error_message"> @ViewBag.report </h5>
+        <hr class="error_line" />
+
+        <div class="col-xs-4 ">
+            <div class="checkbox-inline">
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_staff, new {@ng_model="manage_staff" }) Manage Staff
+                </label>
+                
+                <label>
+                    @Html.CheckBoxFor(m => m.configuration, new { @ng_model = "configuration" }) Configuration
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.set_resumption_date, new { @ng_model = "manage_resumption" }) Manage Resumption
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_student_record, new { @ng_model = "manage_student" }) Manage Student
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.inventory, new { @ng_model = "manage_inventory" }) Manage Inventory
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_user, new { @ng_model = "manage_user" }) Manage User
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.send_email, new { @ng_model = "manage_email" }) Manage Email
+                </label>
+            </div>
+        </div>
+
+
+        <div class="col-xs-4">
+            <div class="checkbox-inline">
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_class, new { @ng_model = "manage_class" }) Manage Class
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.input_result, new { @ng_model = "input_result" }) Input Result
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.set_promotion_quota, new { @ng_model = "manage_promotion" }) Manage Promotion
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_fee, new { @ng_model = "manage_fees" }) Manage Fees
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.expenditure, new { @ng_model = "expenditure" }) Expenditure
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_role, new { @ng_model = "manage_role" }) Manage Role
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.send_sms, new { @ng_model = "manage_sms" }) Manage SMS
+                </label>
+            </div>
+        </div>
+
+
+        <div class="col-xs-4">
+            <div class="checkbox-inline">
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_subject, new { @ng_model = "manage_subject" }) Manage Subject
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.input_comment, new { @ng_model = "input_comment" }) Input Comment
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.default_principal_comment, new { @ng_model = "default_comment" }) Default Comment
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.make_payment, new { @ng_model = "log_payment" }) Log Payment
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_payroll, new { @ng_model = "manage_payroll" }) Manage Payroll
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.report_account, new { @ng_model = "manage_account" }) Manage Account
+                </label>
+                <label>
+                    @Html.CheckBoxFor(m => m.manage_time_table, new { @ng_model = "manage_time_table" }) Manage Time-Table
+                </label>
+            </div>
+        </div>
+  
+
+    <div class="form-group" style="float: none; margin: 0 auto">
+        <div class="col-md-offset-2 col-md-10">
+            <br /><br />
+            <input type="submit" value="Update/ Add Role" class="btn btn-primary" />
+            <input type="reset" value="Clear" class="btn btn-danger">
+        </div>
+    </div>
+
+
+
+    </div>
+
+}
+
+<input type="text" ng-model="x" id="xx" style="visibility: hidden;">
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window) {
+
+       // $('#manage_staff').attr('checked', true);
+        //$('.myCheckbox').attr('checked', false);
+        $scope.uncheck = function ()
+        {
+            $scope.configuration = false; $scope.manage_class = false; $scope.manage_subject = false;
+            $scope.manage_staff = false; $scope.input_result = false; $scope.input_comment = false;
+            $scope.manage_resumption = false; $scope.manage_promotion = false; $scope.default_comment = false;
+            $scope.manage_student = false; $scope.manage_fees = false; $scope.log_payment = false;
+            $scope.manage_inventory = false; $scope.expenditure = false; $scope.manage_payroll = false;
+            $scope.manage_user = false; $scope.manage_role = false; $scope.manage_account = false;
+            $scope.manage_email = false; $scope.manage_sms = false; $scope.manage_time_table = false;
+        }
+
+
+        $scope.test=function()
+        {
+            $scope.uncheck();
+            $http.get("/MISC/find?full_name=" + $scope.lis).then(function (response) {
+               // alert(response.data);
+                $scope.x = response.data;
+                if ($scope.x.match("configuration")) {
+                    //$('#configuration').attr('checked', true);
+                    $scope.configuration = true; 
+                }
+                if ($scope.x.match("class")) {
+                    $scope.manage_class = true;
+                }
+                if ($scope.x.match("subject")) {
+                    $scope.manage_subject = true;
+                }
+                if ($scope.x.match("staff")) {
+                    $scope.manage_staff = true;
+                }
+                if ($scope.x.match("result")) {
+                    $scope.input_result = true; 
+                }
+                if ($scope.x.match("input_comment")) {
+                    $scope.input_comment = true;
+                }
+                if ($scope.x.match("resumption")) {
+                    $scope.manage_resumption = true; 
+                }
+                if ($scope.x.match("promotion")) {
+                    $scope.manage_promotion = true; 
+                }
+                if ($scope.x.match("default_comment")) {
+                    $scope.default_comment = true;
+                }
+                if ($scope.x.match("manage_student")) {
+                    $scope.manage_student = true; 
+                }
+                if ($scope.x.match("manage_fees")) {
+                    $scope.manage_fees = true;
+                }
+                if ($scope.x.match("manage_fees")) {
+                    $scope.manage_fees = true;
+                }
+                if ($scope.x.match("log_payment")) {
+                    $scope.log_payment = true;
+                }
+                if ($scope.x.match("inventory")) {
+                    $scope.manage_inventory = true;
+                }
+                if ($scope.x.match("expenditure")) {
+                    $scope.expenditure = true;
+                }
+                if ($scope.x.match("payroll")) {
+                    $scope.manage_payroll = true;
+                }
+                if ($scope.x.match("user")) {
+                    $scope.manage_user = true;
+                }
+                if ($scope.x.match("role")) {
+                    $scope.manage_role = true;
+                }
+                if ($scope.x.match("manage_account")) {
+                    $scope.manage_account = true;
+                }
+                if ($scope.x.match("email")) {
+                    $scope.manage_email = true;
+                }
+                if ($scope.x.match("sms")) {
+                    $scope.manage_sms = true;
+                }
+                if ($scope.x.match("time_table")) {
+                    $scope.manage_time_table = true;
+                }
+              
+
+            });
+        }
+      
+        $scope.sample = function () {
+            $http({
+                method: "GET",
+                url: "/Misc/chk",
+                data: "{id:'" + $scope.lis + "'}",
+                 dataType: 'json',
+                  headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                alert(response.data);
+            });
+           /* $http.get("/Misc/chk").then(function (response) {
+                alert(response.data);
+                $scope.x = response.data;
+            });*/
+          }
+
+        $scope.refresh = function () {
+            $http.get("/Student/allstudent").then(function (response) {
+                $scope.students = response.data;
+            });
+        }
+
+        $scope.display = function (std) {
+            $http({
+                method: "post",
+                url: "/Student/display",
+                params: {
+                    id: JSON.stringify(std.Name)
+                }
+            }).then(function (response) {
+                alert(response.data);
+            });
+           /* $http.get("/Student/display/" + std.Name).then(function (response) {
+                alert(response.data);
+               // $scope.std = response.data;
+                $scope.Name = std.Name;
+                $scope.Sex = std.Sex;
+                $scope.Country = std.Country;
+                $scope.State = std.State;
+                $scope.Class = std.Class;
+            })*/
+        }
+
+        $scope.Add = function () {
+            $http({
+                method: "POST",
+                url: "/Student/StudentReg",
+                data: "{Name:'" + $scope.Name + "',Sex:'" + $scope.Sex + "',Class:'" + $scope.Class + "',Country:'" + $scope.Country + "',State:'" + $scope.State + "'}",
+               // dataType: 'json',
+              //  headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                alert(response.data);
+                $scope.Name = null;
+                $scope.Sex = null;
+                $scope.Class = null;
+                $scope.Country = null;
+                $scope.State = null;
+            });
+        }
+
+    });
+</script>
+

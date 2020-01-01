@@ -1,0 +1,263 @@
+﻿@model IEnumerable<WEB_SCONET_MANAGEMENT.table_comment_term>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Comment Module</h1>
+
+<h3 class="text-center"> Current Student's Performance Assessment </h3>
+<hr />
+
+<!-- ///////////////////////////////////////// START OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+<div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Type</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="category">
+                    <option value="">Select</option>
+                    <option value="Terminal">Terminal</option>
+                    <option value="Mid-Term">Mid-Term</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Sess.</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="sessio">
+                    <option value="">Select</option>
+                    <option value="2018/2019">2018/2019</option>
+                    <option value="2019/2020">2019/2020</option>
+                    <option value="2020/2021">2020/2021</option>
+                    <option value="2021/2022">2021/2022</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Term</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="term">
+                    <option value="">Select</option>
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label class="control-label col-md-2">Class</label>
+            <div class="col-md-10">
+                <select class="form-control" ng-model="clas" ng-change="display_student()">
+                    <option ng-repeat="m in mclass" value="{{m.Class}}">{{m.Class}}</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<br /><br /><br />
+<div class="form-group col-lg-6" style="float: none; margin: 0 auto;">
+    <label class="control-label col-md-2">Student</label>
+    <div class="col-md-10">
+        <select class="form-control" ng-model="student_name" ng-change="searchComment_Name()"><option ng-repeat="c in jstudents" value="{{c.Full_Name}}">{{c.Full_Name}}</option></select>
+    </div>
+</div>
+<br /><br />
+<hr />
+<!-- ///////////////////////////////////////// END OF HEADING DETERMINANT /////////////////////////////////////////////////-->
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        
+        <th class="text-center">
+            Name of Student
+        </th>
+       
+        <th class="text-center">
+            Class Teacher Comment
+        </th>
+        
+        <th class="text-center">
+            Time School Open
+        </th>
+        <th class="text-center">
+            Time Student Present
+        </th>
+        <th class="text-center">
+            Time Student Absent
+        </th>
+        <th class="text-center"></th>
+    </tr>
+
+    <tr ng-repeat="std in dstudents">
+        <td class="text-center">
+            {{std.Student_Name}}
+        </td>
+        <td class="text-center">
+            {{std.Student_ID}}
+        </td>
+
+        <td class="text-center">
+            {{std.Remark_Teacher}}
+        </td>
+
+        <td class="text-center">
+            {{std.No_of_time_school_open}}
+        </td>
+        <td class="text-center">
+            {{std.No_of_time_student_present}}
+        </td>
+
+
+        <td class="text-center">
+            {{std.No_of_time_school_open}}-{{std.No_of_time_student_present}}
+        </td>
+
+        <td class="text-center">
+            <a ng-href="/Comment/Delete/{{std.p_id}}">Delete</a>
+        </td>
+    </tr>
+<!--@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Term)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark_Teacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark_Principal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.No_of_time_school_open)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.No_of_time_student_present)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment_Punctuality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.General_Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note_to_Parent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Concentration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Neatness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comportment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Relation_with_Peer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Obedience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Punctuality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark_Psycomotor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_Vacation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_Resumption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.School)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.L_U)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.p_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.p_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.p_id })
+        </td>
+    </tr>
+}-->
+
+</table>
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window) {
+
+        $http.get("/Comment/fetchClass").then(function (response) {
+            $scope.mclass = response.data; //alert(response.data);
+        });
+
+        $scope.display_student = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Comment/fetchStudent?id=" + $scope.clas).then(function (response) {
+                $scope.jstudents = response.data; //alert(response.data);
+                $scope.report = "";
+
+                $http.post("/Comment/searchComment?category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas).then(function (response) {
+                    $scope.report = "Loading, Please Wait ...";
+                    $scope.dstudents = response.data; //alert(response.data);
+                    $scope.report = "";
+                });
+
+            });
+        }
+
+        $scope.searchComment_Name = function () {
+            $scope.report = "Loading, Please Wait ...";
+            $http.post("/Comment/searchComment_Name?category=" + $scope.category + "&&sessio=" + $scope.sessio + "&&term=" + $scope.term + "&&clas=" + $scope.clas + "&&student_name=" + $scope.student_name).then(function (response) {
+                $scope.dstudents = response.data; //alert(response.data);
+                $scope.report = "";
+            });
+        }
+
+    });
+</script>

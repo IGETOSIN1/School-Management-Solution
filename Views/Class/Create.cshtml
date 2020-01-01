@@ -1,0 +1,128 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_class
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/><br/><br/>
+<h3 class="text-center">Add New Class</h3>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h5 style=" text-align: center;" class="error_message"> @ViewBag.report </h5>
+    <hr class="error_line" />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-lg-7" style="float: none; margin: 0 auto;">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Class, new { htmlAttributes = new { @class = "form-control",@ng_model="clat" } })
+                @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.School, htmlAttributes: new { @class = "control-label col-md-2" })
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.School, new { htmlAttributes = new { @class = "form-control" } })
+                 @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                 @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+             </div>
+         </div>-->
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Create" class="btn btn-primary" ng-click="test()" />
+                <input type="reset" class="btn btn-danger" value="Reset">
+            </div>
+        </div>
+    </div>
+    </div>
+}
+
+<div >
+    @Html.ActionLink("List of Classes", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("myctrl", function ($scope, $http, $window) {
+
+       /* $http.get("/Student/allstudent").then(function (response) {
+            $scope.students = response.data;
+        });*/
+
+        $scope.test = function () {
+            $http({
+                method: "GET",
+                url: "/Class/dest",
+                data: "{id:'" + $scope.cla + "'}",
+                 dataType: 'json',
+                  headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                alert(response.data);
+            });
+           /* $http.get("/Misc/chk").then(function (response) {
+                alert(response.data);
+                $scope.x = response.data;
+            });*/
+          }
+
+        $scope.refresh = function () {
+            alert("TOSIN DONE ...");
+          //  $http.get("/Student/allstudent").then(function (response) {
+            //    $scope.students = response.data;
+          //  });
+        }
+
+        $scope.display = function (std) {
+            $http({
+                method: "post",
+                url: "/Student/display",
+                params: {
+                    id: JSON.stringify(std.Name)
+                }
+            }).then(function (response) {
+                alert(response.data);
+            });
+           /* $http.get("/Student/display/" + std.Name).then(function (response) {
+                alert(response.data);
+               // $scope.std = response.data;
+                $scope.Name = std.Name;
+                $scope.Sex = std.Sex;
+                $scope.Country = std.Country;
+                $scope.State = std.State;
+                $scope.Class = std.Class;
+            })*/
+        }
+
+    });
+</script>
+

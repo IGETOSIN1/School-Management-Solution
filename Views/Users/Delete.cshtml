@@ -1,0 +1,105 @@
+﻿@model WEB_SCONET_MANAGEMENT.table_user
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br /><br />
+<h3 class="text-center">Delete</h3>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+   
+    <dl class="dl-horizontal">
+       <!-- <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Other_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Other_Name)
+        </dd>-->
+
+        <dt>
+            <label class="control-label col-md-2">Full Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Full_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.School)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.School)
+        </dd>
+
+        <dt>
+            <label> Role(s)</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            <label>Status</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category_Status)
+        </dd>
+
+        <dt>
+            <label>User Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+       <!-- <dt>
+            @Html.LabelFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.PasswordFor(model => model.Password)
+        </dd>-->
+
+        <dt>
+            <label>Registered By</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Registered_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
